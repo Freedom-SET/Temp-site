@@ -23,7 +23,6 @@ urlpatterns = [
     path('', pages.home),
     path('contact/', pages.contact),
     path('home/', pages.home),
-    path('login/', pages.login),
-    path('register/', pages.register),
+    path('apply/', pages.apply),
     path('webpage/', pages.webpage),
 ]
