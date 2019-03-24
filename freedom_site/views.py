@@ -40,7 +40,7 @@ def apply(req):
 
         statement = req.POST['statement']
         skills = req.POST['skills']
-        account = Account(semester=sem, name=user, email=email, phone=phone, usn=usn, personal_statement=statement, skills=skills, interests=interests)
+        account = Account(semester=semester, name=user, email=email, phone=phone, usn=usn, personal_statement=statement, skills=skills, interests=interests)
         account.save()
 
 
