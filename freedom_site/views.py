@@ -13,6 +13,13 @@ def apply(req):
     if req.method == 'GET':
         return render(req, 'apply.html', {'msg':''})
     if req.POST:
+        user = req.POST['name']
+        phone = req.POST['phone']
+        email = req.POST['email']
+        usn = req.POST['usn']
+        if len(Account.objects.filter(phone=phone)) or len(Account.objects.filter(email=email)) or len(Account.objects.filter(usn=usn)):
+            return render(req, 'apply.html', {'msg': "Someone (possibly you) has already applied with that email, phone number, or USN."})
+
         other = req.POST.get('other', '')
         other_data = req.POST.get('other-value', '')
         if other and not other_data:
@@ -29,14 +36,10 @@ def apply(req):
         networking = networking if not networking else networking + '\n'
 
         interests = web + ml + app + networking + other_data
-        user = req.POST['name']
-        phone = req.POST['phone']
-        email = req.POST['email']
-        usn = req.POST['usn']
 
         statement = req.POST['statement']
         skills = req.POST['skills']
-        account = Account(email=email, phone=phone, usn=usn, personal_statement=statement, skills=skills, interests=interests)
+        account = Account(name=user, email=email, phone=phone, usn=usn, personal_statement=statement, skills=skills, interests=interests)
         account.save()
 
 
