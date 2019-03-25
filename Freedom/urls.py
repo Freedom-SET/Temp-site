@@ -24,5 +24,5 @@ urlpatterns = [
     path('contact/', pages.contact),
     path('home/', pages.home),
     path('apply/', pages.apply),
-    path('webpage/', pages.webpage),
+    path('webdev/', pages.webdev),
 ]

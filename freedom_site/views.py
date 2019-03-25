@@ -6,6 +6,9 @@ from .models import Account
 def home(req):
     return render(req, 'home.html')
 
+def webdev(req):
+    return render(req, 'webdev.html')
+
 def contact(req):
     return render(req, 'contact.html')
 
@@ -31,10 +34,11 @@ def apply(req):
         networking = req.POST.get('Networking', '')
         if not web and not ml and not app and not networking:
             return render(req, 'apply.html', 'You need to choose at least one field of interest')
-        web = web if not web else web + '\n'
-        ml = ml if not ml else ml + '\n'
-        app = app if not app else app + '\n'
-        networking = networking if not networking else networking + '\n'
+
+        web = web if not web else web + ' '
+        ml = ml if not ml else ml + ' '
+        app = app if not app else app + ' '
+        networking = networking if not networking else networking + ' '
 
         interests = web + ml + app + networking + other_data
 
@@ -44,7 +48,7 @@ def apply(req):
         account.save()
 
 
-        return render(req, 'apply.html', { 'msg':'You have successfully applied! We\'ll email you in a bit'})
+        return render(req, 'apply.html', {'msg':'You have successfully applied! We\'ll email you in a bit'})
 
 def webpage(req):
     return render(req, 'webpage.html')
